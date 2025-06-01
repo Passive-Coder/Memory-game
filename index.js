@@ -95,7 +95,7 @@ function handleClick(){
             activeCards++;
             flippedCards.push($(this));
             $(this).find(".card").toggleClass("action");
-            new Audio("./sounds/card-flip.ogg").play();
+            new Audio("./sounds/card-flip.mp3").play();
         }
     }
     if(activeCards === 2 && countdown !== null){
@@ -113,6 +113,7 @@ function handleClick(){
             activeCards++;
             flippedCards.push($(this));
             $(this).find(".card").toggleClass("action");
+            new Audio("./sounds/card-flip.mp3").play();
         }
     }
     else if(activeCards === 2){
@@ -129,7 +130,7 @@ function handleClick(){
 $(".tile").on("click", handleClick); 
 
 $("button").on("click", function(){
-    new Audio("./sounds/button-click.wav").play();
+    new Audio("./sounds/button-click.mp3").play();
     initialize();
 }
 );
