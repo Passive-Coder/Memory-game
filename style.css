@@ -167,7 +167,9 @@ body{
     align-items: center;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+    will-change: transform;
+    transform: translateZ(0);
     color: #fff9c4;
     border: 1px solid yellow;
     border-radius: 8px;
@@ -175,6 +177,11 @@ body{
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))){
+    .button-style{
+        background: none;
+    }
+}
 button:active {
       background-color: #f1c40f;
       transform: scale(0.96);
