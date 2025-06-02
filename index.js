@@ -8,6 +8,12 @@ var countdown = null;
 var round = 1;
 var totalPoints = 0;
 var levelPoints;
+const flipSound = new Audio("./sounds/card-flip.mp3");
+flipSound.volume = 0.2;
+const winSound = new Audio("./sounds/correct.mp3");
+winSound.volume = 0.075;
+const buttonClick = new Audio("./sounds/button-click.mp3");
+buttonClick.volume = 0.3;
 function displayResults(){
     var labels = $(".footer-style").find("h1");
     $("#moves").html(`Moves: ${moves}`);
@@ -48,9 +54,9 @@ $(document).ready(function(){
 
 function checkCards(){
     if($(flippedCards[0]).find(".back").html() === $(flippedCards[1]).find(".back").html()){
+        winSound.play();
         $(flippedCards[0]).addClass("hide");
         $(flippedCards[1]).addClass("hide");
-        new Audio("./sounds/correct.mp3").play();
         levelPoints += 10;
         totalPoints += 10;
         var classes = $("div.tile.hide");
@@ -94,8 +100,8 @@ function handleClick(){
         if(!($(this).find(".card").hasClass("action"))){
             activeCards++;
             flippedCards.push($(this));
+            flipSound.play();
             $(this).find(".card").toggleClass("action");
-            new Audio("./sounds/card-flip.mp3").play();
         }
     }
     if(activeCards === 2 && countdown !== null){
@@ -112,8 +118,8 @@ function handleClick(){
             checkCards();
             activeCards++;
             flippedCards.push($(this));
+            flipSound.play();
             $(this).find(".card").toggleClass("action");
-            new Audio("./sounds/card-flip.mp3").play();
         }
     }
     else if(activeCards === 2){
@@ -130,7 +136,7 @@ function handleClick(){
 $(".tile").on("click", handleClick); 
 
 $("button").on("click", function(){
-    new Audio("./sounds/button-click.mp3").play();
+    buttonClick.play();
     initialize();
 }
 );
